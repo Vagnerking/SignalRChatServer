@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -18,10 +19,8 @@ namespace SignalRChatServer
         {
 
             services.AddSignalR();
-            services.AddCors(c => c.AddPolicy("MyPolicy", builder =>
-            {
-                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials();
-            }));
+            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,14 +33,14 @@ namespace SignalRChatServer
 
             app.UseRouting();
 
-           
-
-            app.UseCors(p => {
-                p.AllowAnyOrigin()
+            app.UseCors(p =>
+            {
+                p.WithOrigins("http://chatmizera-com-br.umbler.net")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
             });
+
 
             app.UseEndpoints(endpoints =>
             {
