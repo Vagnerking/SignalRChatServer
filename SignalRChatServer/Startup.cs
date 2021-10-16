@@ -18,7 +18,10 @@ namespace SignalRChatServer
         {
 
             services.AddSignalR();
-            services.AddCors();
+            services.AddCors(c => c.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +33,8 @@ namespace SignalRChatServer
             }
 
             app.UseRouting();
+
+           
 
             app.UseCors(p => {
                 p.AllowAnyOrigin()
