@@ -32,7 +32,7 @@ namespace SignalRChatServer
             app.UseRouting();
 
             app.UseCors(p => {
-                p.WithOrigins("http://chatmizera-com-br.umbler.net/")
+                p.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
