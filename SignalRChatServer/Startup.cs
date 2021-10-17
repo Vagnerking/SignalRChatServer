@@ -35,7 +35,7 @@ namespace SignalRChatServer
 
             app.UseCors(p =>
             {
-                p.WithOrigins("http://chatmizera-com-br.umbler.net")
+                p.WithOrigins("http://my-super-chat.s3-website-sa-east-1.amazonaws.com")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
